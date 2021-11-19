@@ -15,6 +15,7 @@ class CreateBarbershopsTable extends Migration
     {
         Schema::create('barbershops', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('user_id');
             $table->string('name');
             $table->string('email')->nullable();
             $table->string('province_id');

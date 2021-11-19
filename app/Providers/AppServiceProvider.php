@@ -28,8 +28,12 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        $nav_pending = Barbershop::where('status', 'Belum Terverifikasi')->orderBy('updated_at', 'desc')->limit(10)->get();
-        
-        View::share('nav_pending', $nav_pending);
+        try {
+            $nav_pending = Barbershop::where('status', 'Belum Terverifikasi')->orderBy('updated_at', 'desc')->limit(10)->get();
+            
+            View::share('nav_pending', $nav_pending);
+        } catch (\Throwable $th) {
+            $nav_pending = [];
+        }
     }
 }

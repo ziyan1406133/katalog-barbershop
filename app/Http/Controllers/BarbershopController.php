@@ -47,7 +47,7 @@ class BarbershopController extends Controller
     public function pending()
     {
         if(auth()->user()->role == 'Admin') {
-            $barbershops = Barbershop::where('status', 'Terverifikasi')->orderBy('created_at', 'desc')->get();
+            $barbershops = Barbershop::where('status', '!=','Terverifikasi')->orderBy('created_at', 'desc')->get();
             return view('barbershop.pending', compact('barbershops'));
 
         } else {
@@ -86,13 +86,13 @@ class BarbershopController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'gambar' => 'image|max:1999',
-        ],
-        [
-            'gambar.image' => 'File yang diupload harus berupa gambar',
-            'max' => 'Maksimum ukuran file yang diupload adalah 2 MB'
-        ]);
+        // $this->validate($request, [
+        //     'gambar' => 'image|max:1999',
+        // ],
+        // [
+        //     'gambar.image' => 'File yang diupload harus berupa gambar',
+        //     'max' => 'Maksimum ukuran file yang diupload adalah 2 MB'
+        // ]);
 
         $barbershop = new Barbershop;
         $barbershop->user_id = auth()->user()->id;
