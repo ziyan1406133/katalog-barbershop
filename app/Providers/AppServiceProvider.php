@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
             
             View::share('nav_pending', $nav_pending);
         } catch (\Throwable $th) {
-            $nav_pending = [];
+            View::share('nav_pending', $nav_pending);
         }
     }
 }
